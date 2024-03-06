@@ -14,15 +14,15 @@ This project is part of the backend development for an internal tool designed to
 - SQLite
 - Requests
 
-### Installation
+## IMPORTANT - Installation
 
-1. Clone the repository: git clone!
+### 1. Clone the repository: git clone
 
-2. Navigate to the project directory: cd main
+### 2. Navigate to the project directory: cd Backend_Python_Flask_App
 
-3. Install the required packages: pip install -r requirements.txt
+### 3. Install the required packages: **pip install -r requirements.txt**
 
-4. Initialize the database:
+### 4. Initialize the database:
 
 flask db init
 flask db migrate -m "Initial migration."
