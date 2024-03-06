@@ -77,10 +77,14 @@ Model and View Imports: The application imports models and views from the app pa
 
 Root Route: A simple root route (/) is defined that returns a plain text response. This can be used as a basic health check or welcome message for the application.
 ---
+
+## **models.py** 
+
 Models Overview
 
 Clinician Model
 Purpose: Represents healthcare clinicians within the system.
+
 Fields:
 id: A unique identifier for each clinician. It serves as the primary key.
 first_name and last_name: The clinician's first and last names. Both are indexed to improve query performance on these fields.
@@ -90,6 +94,7 @@ appointments: A dynamic relationship to the Appointment model. This allows for q
 
 Patient Model
 Purpose: Represents patients within the system.
+
 Fields:
 id: A unique identifier for each patient, serving as the primary key.
 first_name and last_name: The patient's first and last names, both indexed for improved query performance.
@@ -98,6 +103,7 @@ appointments: A dynamic relationship to the Appointment model, facilitating the 
 
 Appointment Model
 Purpose: Manages the appointments between clinicians and patients.
+
 Fields:
 id: A unique identifier for each appointment, serving as the primary key.
 appointment_date: The date and time when the appointment is scheduled to take place.
@@ -108,7 +114,8 @@ status: The status of the appointment (e.g., scheduled, cancelled, completed), a
 Relationships
 The Clinician and Patient models are linked to the Appointment model via foreign keys, establishing a one-to-many relationship from clinicians and patients to appointments. This means a single clinician or patient can have multiple associated appointments. The backref in each relationship provides a simple way to access related appointments from a clinician or patient instance.
 
-Notes
+#### *Notes*
+
 The uniqueness constraint on the state field in the Clinician model might need to be revisited, as typically multiple clinicians would practice in the same state.
 
 The dynamic loading strategy (lazy='dynamic') for the appointments relationships allows for more flexible and efficient querying of related appointments, as it returns a query object instead of a list of items.
@@ -116,7 +123,7 @@ The dynamic loading strategy (lazy='dynamic') for the appointments relationships
 This file is crucial for the application's data layer, defining how data is structured and stored in the database.
 
 ---
-Utils.py - validate_npi functionality
+## **Utils.py - Validate_npi Functionality**
 The primary purpose of the validate_npi function is to ensure the integrity and correctness of the NPI number provided for clinicians being added to or updated in the system. It leverages the external NPI registry API to cross-verify the NPI number against the clinician's personal and professional details.
 
 Functionality
@@ -141,7 +148,7 @@ The commented-out limit parameter in the params dictionary suggests there was co
 
 ---
 
-Views.py - routing
+## **Views.py - Routing**
 
 This file leverages Flask's capabilities to define endpoints for creating, retrieving, updating, and deleting resources in a RESTful manner. It makes extensive use of request to access the data sent by clients, jsonify to format the response data as JSON, and abort to handle error situations gracefully. The use of the validate_npi utility function for clinician validation adds a layer of data integrity and compliance with external standards. Overall, views.py is designed to provide a comprehensive API for managing clinicians, patients, and appointments within the application.
 
@@ -171,7 +178,7 @@ Delete a Clinician
 Endpoint: DELETE /clinicians/<clinician_id>
 Functionality: Removes a clinician from the database by their ID. Returns a success message upon deletion.
 
-#Patients Management
+### Patients Management
 
 Add a Patient
 
@@ -217,7 +224,7 @@ Functionality: Deletes an appointment by its ID. It includes error handling for 
 
 ----
 
-Testing Information 
+## **Testing Information**
 
 Retrieving Appointments with Filters
 
@@ -289,7 +296,7 @@ json
 
 Description: Schedules a new appointment with the given details.
 
-Tips for Testing
+### *Tips for Testing*
 
 Ensure your Flask application is running locally on port 5000.
 
