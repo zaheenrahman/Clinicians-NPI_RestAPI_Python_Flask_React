@@ -3,7 +3,7 @@
 ## Overview
 This project is part of the backend development for an internal tool designed to manage patients and their appointments. It serves as a REST API built with Flask, a Python web framework, and utilizes SQLite as the database for storing data. The API manages three main resources: clinicians, patients, and appointments, facilitating the creation, reading, updating, and deletion (CRUD) of these resources.
 
-#Seperate repo for frontend: https://github.com/zaheenrahman/Frontend_NPI_AppointmentPicker-React-Tailwind
+## Seperate repo for frontend: https://github.com/zaheenrahman/Frontend_NPI_AppointmentPicker-React-Tailwind
 ## For visualization and application for showing Calendar functionality for appointments - Please visit for more details and on how to use it.
 
 ## Project Setup
