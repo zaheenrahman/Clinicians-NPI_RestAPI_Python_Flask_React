@@ -16,7 +16,7 @@ This project is part of the backend development for an internal tool designed to
 
 ### Installation
 
-1. Clone the repository: git clone
+1. Clone the repository: git clone!
 
 2. Navigate to the project directory: cd main
 
@@ -307,3 +307,22 @@ For requests that require an ID (like updating or deleting a specific record), e
 Use real NPI numbers for clinician additions to pass the validation (as shown in the examples).
 
 The dates and IDs provided in the requests should be adjusted based on the actual data in your database.
+
+### Misc - Images working preview ###
+
+![image](https://github.com/zaheenrahman/Backend_NPI-RestAPI/assets/35182751/52dc6be2-f743-43b2-b7a5-6c2311c2ebe8)
+
+#### Post request for sample patient
+![image](https://github.com/zaheenrahman/Backend_NPI-RestAPI/assets/35182751/6057e307-f481-40e5-a614-b65350f94a2f)
+
+#### Post for Clinicians 
+![image](https://github.com/zaheenrahman/Backend_NPI-RestAPI/assets/35182751/6c661eb8-b366-47f6-bd70-fab6ada72909)
+
+#### Appointments Scheduled:
+
+![image](https://github.com/zaheenrahman/Backend_NPI-RestAPI/assets/35182751/0a44c130-45b2-4f2c-b12c-616fc29f452a)
+
+
+
+
+
