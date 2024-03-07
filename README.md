@@ -99,7 +99,7 @@ first_name and last_name: The clinician's first and last names. Both are indexed
 
 npi_number: The National Provider Identifier (NPI), a unique 10-digit identification number for covered healthcare providers in the United States. It's marked as unique, ensuring no two clinicians have the same NPI.
 
-state: The state in which the clinician is registered to practice. This is stored as a 2-letter code and is marked as unique, which might be a mistake since multiple clinicians can practice in the same state.
+state: The state in which the clinician is registered to practice. This is stored as a 2-letter code, initially marked as unique by mistake and then fixed in latest revision. 
 
 appointments: A dynamic relationship to the Appointment model. This allows for querying a clinician's appointments directly from a clinician instance.
 
