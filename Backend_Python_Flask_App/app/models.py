@@ -5,7 +5,7 @@ class Clinician(db.Model):
     first_name = db.Column(db.String(64), index=True, nullable=False)
     last_name = db.Column(db.String(64), index=True, nullable=False)
     npi_number = db.Column(db.String(10), unique=True, nullable=False)
-    state = db.Column(db.String(2), unique=True, nullable=False)
+    state = db.Column(db.String(2), nullable=False)
     appointments = db.relationship('Appointment', backref='clinician', lazy='dynamic')
 
 class Patient(db.Model):

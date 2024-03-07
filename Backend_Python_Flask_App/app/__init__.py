@@ -7,7 +7,8 @@ from config import Config
 app = Flask(__name__)
 app.config.from_object(Config)
 
-#Enable CORS for all routes
+#Enable CORS for all routes.
+#This helps us to connect to the frontend.
 CORS(app)
 
 db = SQLAlchemy(app)
