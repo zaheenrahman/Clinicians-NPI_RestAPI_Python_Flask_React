@@ -81,7 +81,6 @@ Flask-Migrate for Database Migrations: migrate is an instance of Migrate, integr
 
 Model and View Imports: The application imports models and views from the app package. Models define the database schema, while views handle the routing and logic of the application.
 
-Root Route: A simple root route (/) is defined that returns a plain text response. This can be used as a basic health check or welcome message for the application.
 ---
 
 ## **models.py** 
@@ -89,40 +88,56 @@ Root Route: A simple root route (/) is defined that returns a plain text respons
 Models Overview
 
 Clinician Model
+
 Purpose: Represents healthcare clinicians within the system.
 
 Fields:
+
 id: A unique identifier for each clinician. It serves as the primary key.
+
 first_name and last_name: The clinician's first and last names. Both are indexed to improve query performance on these fields.
+
 npi_number: The National Provider Identifier (NPI), a unique 10-digit identification number for covered healthcare providers in the United States. It's marked as unique, ensuring no two clinicians have the same NPI.
+
 state: The state in which the clinician is registered to practice. This is stored as a 2-letter code and is marked as unique, which might be a mistake since multiple clinicians can practice in the same state.
+
 appointments: A dynamic relationship to the Appointment model. This allows for querying a clinician's appointments directly from a clinician instance.
 
 Patient Model
+
 Purpose: Represents patients within the system.
 
 Fields:
+
 id: A unique identifier for each patient, serving as the primary key.
+
 first_name and last_name: The patient's first and last names, both indexed for improved query performance.
+
 dob: The date of birth of the patient, essential for medical records and age calculation.
+
 appointments: A dynamic relationship to the Appointment model, facilitating the querying of a patient's appointments directly.
 
 Appointment Model
+
 Purpose: Manages the appointments between clinicians and patients.
 
 Fields:
+
 id: A unique identifier for each appointment, serving as the primary key.
+
 appointment_date: The date and time when the appointment is scheduled to take place.
+
 clinician_id: A foreign key linking to the Clinician model, indicating which clinician is associated with the appointment.
+
 patient_id: A foreign key linking to the Patient model, indicating which patient the appointment is for.
+
 status: The status of the appointment (e.g., scheduled, cancelled, completed), allowing for the management of appointment lifecycle.
 
 Relationships
+
 The Clinician and Patient models are linked to the Appointment model via foreign keys, establishing a one-to-many relationship from clinicians and patients to appointments. This means a single clinician or patient can have multiple associated appointments. The backref in each relationship provides a simple way to access related appointments from a clinician or patient instance.
 
 #### *Notes*
-
-The uniqueness constraint on the state field in the Clinician model might need to be revisited, as typically multiple clinicians would practice in the same state.
 
 The dynamic loading strategy (lazy='dynamic') for the appointments relationships allows for more flexible and efficient querying of related appointments, as it returns a query object instead of a list of items.
 
@@ -133,24 +148,32 @@ This file is crucial for the application's data layer, defining how data is stru
 The primary purpose of the validate_npi function is to ensure the integrity and correctness of the NPI number provided for clinicians being added to or updated in the system. It leverages the external NPI registry API to cross-verify the NPI number against the clinician's personal and professional details.
 
 Functionality
-Arguments: The function takes four string arguments: npi_number, first_name, last_name, and state. These represent the NPI number to be validated and the clinician's first name, last name, and state of practice, respectively.
+
+Arguments: 
+
+The function takes four string arguments: npi_number, first_name, last_name, and state. 
+
+These represent the NPI number to be validated and the clinician's first name, last name, and state of practice, respectively.
 
 Process:
+
 Constructs a request to the NPI registry API with the provided details.
+
 Sends the request and waits for the response from the API.
+
 Checks the response status code for any HTTP errors and raises an exception if any are found.
+
 Parses the JSON response to check the result_count. A result_count greater than 0 indicates that the NPI number is valid and matches the provided details.
 
 Returns: The function returns a boolean value, True if the NPI number is valid and matches the clinician's details according to the NPI registry, and False otherwise.
 
 Error Handling
+
 The function uses a try-except block to catch and handle any exceptions raised due to request issues (like network problems or invalid responses from the API). This ensures that the function gracefully handles errors and simply returns False if the validation cannot be completed due to external factors.
 
 Usage
-This utility function is likely called when clinicians are added or their details are updated in the system, providing an additional layer of data validation to ensure the accuracy and validity of clinician records.
 
-Notes
-The commented-out limit parameter in the params dictionary suggests there was consideration to limit the number of results returned by the API. However, it's left commented and thus not in use, which might affect performance for queries that could return a large number of matches. Including this parameter with a small value (like 1) could potentially improve response times and reduce data processing overhead. As this project is utilizing small datasets it is not used and left commented out.
+This utility function is likely called when clinicians are added or their details are updated in the system, providing an additional layer of data validation to ensure the accuracy and validity of clinician records.
 
 ---
 
@@ -158,11 +181,12 @@ The commented-out limit parameter in the params dictionary suggests there was co
 
 This file leverages Flask's capabilities to define endpoints for creating, retrieving, updating, and deleting resources in a RESTful manner. It makes extensive use of request to access the data sent by clients, jsonify to format the response data as JSON, and abort to handle error situations gracefully. The use of the validate_npi utility function for clinician validation adds a layer of data integrity and compliance with external standards. Overall, views.py is designed to provide a comprehensive API for managing clinicians, patients, and appointments within the application.
 
-#Clinicians Management
+## Clinicians Management
 
-Add a Clinician
+Add a Clinician *(Examples are provided below in images at the bottom of this file.)*
 
 Endpoint: POST /clinicians
+
 Functionality: Validates and adds a new clinician to the database. It ensures that all required fields are provided and validates the NPI number against an external API.
 
 Validation: Checks for the presence of first_name, last_name, npi_number, and state. Additionally, it validates the NPI number for authenticity and match against provided details.
