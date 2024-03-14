@@ -39,7 +39,7 @@ This project is part of the backend development for an internal tool designed to
 
 ## API Endpoints
 
-### Clinicians
+## Clinicians
 
 - **POST /clinicians**: Add a new clinician. Validates the NPI number against external API.
 - **GET /clinicians**: Retrieve all clinicians.
@@ -47,7 +47,7 @@ This project is part of the backend development for an internal tool designed to
 - **PUT /clinicians/<clinician_id>**: Update a clinician's information.
 - **DELETE /clinicians/<clinician_id>**: Delete a clinician by ID.
 
-### Patients
+## Patients
 
 - **POST /patients**: Add a new patient.
 - **GET /patients**: Retrieve all patients.
@@ -55,7 +55,7 @@ This project is part of the backend development for an internal tool designed to
 - **PUT /patients/<patient_id>**: Update a patient's information.
 - **DELETE /patients/<patient_id>**: Delete a patient by ID.
 
-### Appointments
+## Appointments
 
 - **POST /appointments**: Schedule a new appointment.
 - **GET /appointments**: Retrieve all appointments, with optional filters.
@@ -63,7 +63,7 @@ This project is part of the backend development for an internal tool designed to
 - **PUT /appointments/<appointment_id>**: Update an appointment's details.
 - **DELETE /appointments/<appointment_id>**: Cancel an appointment.
 
-### File Comments ###
+## File Comments ##
 
 ---
 __init__.py - Application Initialization
